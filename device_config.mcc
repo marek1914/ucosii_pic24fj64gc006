@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration device="PIC24FJ64GC006" mcc_version="v2.25.2">
+    <managers>
+        <manager generated="true" name="Pin Manager" reloadPin="manual">
+            <setting name="package" option="TQFP64"/>
+            <setting name="sorting" option="true"/>
+            <file checksum="1804390403" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
+            <file checksum="1235433197" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+        </manager>
+        <manager generated="true" name="System" reloadPin="manual">
+            <initializer comment="" name="Initialize">
+                <setting name="CPDIV" option="1:1" register="CLKDIV"/>
+                <setting name="PLLEN" option="disabled" register="CLKDIV"/>
+                <setting name="RCDIV" option="FRC/2" register="CLKDIV"/>
+                <setting name="DOZE" option="1:8" register="CLKDIV"/>
+                <setting name="DOZEN" option="disabled" register="CLKDIV"/>
+                <setting name="ROI" option="disabled" register="CLKDIV"/>
+                <setting name="STOR" option="disabled" register="OSCTUN"/>
+                <setting name="STORPOL" option="Interrupt when STOR is 1" register="OSCTUN"/>
+                <setting name="STSIDL" option="disabled" register="OSCTUN"/>
+                <setting name="STLPOL" option="Interrupt when STLOCK is 1" register="OSCTUN"/>
+                <setting name="STLOCK" option="disabled" register="OSCTUN"/>
+                <setting name="STSRC" option="SOSC" register="OSCTUN"/>
+                <setting name="STEN" option="disabled" register="OSCTUN"/>
+                <setting name="TUN" option="Center frequency" register="OSCTUN"/>
+            </initializer>
+            <setting name="I2C2SEL" option="SEC"/>
+            <setting name="DSWDTEN" option="ON"/>
+            <setting name="DSWDTOSC" option="LPRC"/>
+            <setting name="PLLDIV" option="NODIV"/>
+            <setting name="RTCBAT" option="ON"/>
+            <setting name="IOL1WAY" option="ON"/>
+            <setting name="DSBOREN" option="ON"/>
+            <setting name="DSSWEN" option="ON"/>
+            <setting name="DSWDTPS" option="DSWDTPS1F"/>
+            <setting name="WPCFG" option="WPCFGDIS"/>
+            <setting name="BOREN" option="ON"/>
+            <setting name="WPDIS" option="WPDIS"/>
+            <setting name="WPFP" option="WPFP127"/>
+            <setting name="SOSCSEL" option="ON"/>
+            <setting name="WPEND" option="WPENDMEM"/>
+            <setting name="WDTWIN" option="PS25_0"/>
+            <setting name="WDTCLK" option="LPRC"/>
+            <setting name="FCKSM" option="CSDCMD"/>
+            <setting name="ALTCVREF" option="CVREF_RB"/>
+            <setting name="POSCMD" option="EC"/>
+            <setting name="ALTADREF" option="AVREF_RB"/>
+            <setting name="FNOSC" option="PRIPLL"/>
+            <setting name="IESO" option="ON"/>
+            <setting name="OSCIOFCN" option="OFF"/>
+            <setting name="WDTCMX" option="WDTCLK"/>
+            <setting name="WDTPS" option="PS32768"/>
+            <setting name="LPCFG" option="OFF"/>
+            <setting name="GCP" option="OFF"/>
+            <setting name="FWDTEN" option="WDT_HW"/>
+            <setting name="ICS" option="PGx1"/>
+            <setting name="WINDIS" option="OFF"/>
+            <setting name="JTAGEN" option="ON"/>
+            <setting name="FWPSA" option="PR128"/>
+            <setting name="GWRP" option="OFF"/>
+            <setting name="Primary Oscillator" option="4000000"/>
+            <setting name="Secondary Oscillator" option="31000"/>
+            <setting name="generateConfigBits" option="true"/>
+            <file checksum="2731417629" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="1565132596" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
+        </manager>
+    </managers>
+</configuration>
