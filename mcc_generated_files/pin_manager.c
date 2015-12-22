@@ -8,13 +8,14 @@
     pin_manager.c
 
   @Summary:
-    This is the generated manager file for the MPLAB® Code Configurator device.  This manager
+    This is the generated manager file for the MPLABï¿½ Code Configurator device.  This manager
     configures the pins direction, initial state, analog setting.
+    The peripheral pin select, PPS, configuration is also handled by this manager.
 
   @Description:
-    This source file provides implementations for MPLAB® Code Configurator interrupts.
+    This source file provides implementations for MPLABï¿½ Code Configurator interrupts.
     Generation Information : 
-        Product Revision  :  MPLAB® Code Configurator - v2.25.2
+        Product Revision  :  MPLABï¿½ Code Configurator - v2.25.2
         Device            :  PIC24FJ64GC006
         Version           :  1.02
     The generated drivers are tested against the following:
@@ -58,7 +59,7 @@ void PIN_MANAGER_Initialize(void) {
      * Setting the GPIO of PORTB
      ***************************************************************************/
     LATB = 0x00;
-    TRISB = 0xF0FF;
+    TRISB = 0xF0D1;
     /****************************************************************************
      * Setting the GPIO of PORTC
      ***************************************************************************/
@@ -73,25 +74,36 @@ void PIN_MANAGER_Initialize(void) {
      * Setting the GPIO of PORTE
      ***************************************************************************/
     LATE = 0x00;
-    TRISE = 0xFF;
+    TRISE = 0xDF;
     /****************************************************************************
      * Setting the GPIO of PORTF
      ***************************************************************************/
     LATF = 0x00;
-    TRISF = 0xBB;
+    TRISF = 0x8B;
     /****************************************************************************
      * Setting the GPIO of PORTG
      ***************************************************************************/
     LATG = 0x00;
-    TRISG = 0x03CC;
+    TRISG = 0xC8;
 
     /****************************************************************************
      * Setting the Analog/Digital Configuration SFR
      ***************************************************************************/
-    ANSB = 0xF0FF;
+    ANSB = 0x10C1;
     ANSD = 0x0FFF;
-    ANSE = 0xF0;
-    ANSF = 0xB9;
-    ANSG = 0x03C0;
+    ANSE = 0xD0;
+    ANSF = 0x89;
+    ANSG = 0x0240;
 
+    /****************************************************************************
+     * Set the PPS
+     ***************************************************************************/
+    __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
+    RPINR19bits.U2RXR = 0x1C; // RB4->UART2:U2RX
+    RPOR9bits.RP18R = 0x05; // RB5->UART2:U2TX
+    RPINR7bits.IC2R = 0x0E; // RB14->IC2:IC2
+    RPINR8bits.IC3R = 0x1D; // RB15->IC3:IC3
+    RPINR18bits.U1RXR = 0x1A; // RG7->UART1:U1RX
+    RPOR9bits.RP19R = 0x03; // RG8->UART1:U1TX
+    __builtin_write_OSCCONL(OSCCON | 0x40); // lock   PPS
 }

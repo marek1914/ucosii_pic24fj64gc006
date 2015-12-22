@@ -27,14 +27,14 @@
 
 
                                        /* ---------------------- MISCELLANEOUS ----------------------- */
-#define OS_APP_HOOKS_EN           0u   /* Application-defined hooks are called from the uC/OS-II hooks */
-#define OS_ARG_CHK_EN             1u   /* Enable (1) or Disable (0) argument checking                  */
+#define OS_APP_HOOKS_EN           1u   /* Application-defined hooks are called from the uC/OS-II hooks */
+#define OS_ARG_CHK_EN             0u   /* Enable (1) or Disable (0) argument checking                  */
 #define OS_CPU_HOOKS_EN           1u   /* uC/OS-II hooks are found in the processor port files         */
 
 #define OS_DEBUG_EN               1u   /* Enable(1) debug variables                                    */
 
-#define OS_EVENT_MULTI_EN         1u   /* Include code for OSEventPendMulti()                          */
-#define OS_EVENT_NAME_EN          1u   /* Enable names for Sem, Mutex, Mbox and Q                      */
+#define OS_EVENT_MULTI_EN         0u   /* Include code for OSEventPendMulti()                          */
+#define OS_EVENT_NAME_EN          0u   /* Enable names for Sem, Mutex, Mbox and Q                      */
 
 #define OS_LOWEST_PRIO           10u   /* Defines the lowest priority that can be assigned ...         */
                                        /* ... MUST NEVER be higher than 254!                           */
@@ -43,7 +43,7 @@
 #define OS_MAX_FLAGS              1u   /* Max. number of Event Flag Groups    in your application      */
 #define OS_MAX_MEM_PART           1u   /* Max. number of memory partitions                             */
 #define OS_MAX_QS                 1u   /* Max. number of queue control blocks in your application      */
-#define OS_MAX_TASKS              3u   /* Max. number of tasks in your application, MUST be >= 2       */
+#define OS_MAX_TASKS              8u   /* Max. number of tasks in your application, MUST be >= 2       */
 
 #define OS_SCHED_LOCK_EN          1u   /* Include code for OSSchedLock() and OSSchedUnlock()           */
 
@@ -61,10 +61,10 @@
 
                                        /* --------------------- TASK MANAGEMENT ---------------------- */
 #define OS_TASK_CHANGE_PRIO_EN    1u   /*     Include code for OSTaskChangePrio()                      */
-#define OS_TASK_CREATE_EN         1u   /*     Include code for OSTaskCreate()                          */
+#define OS_TASK_CREATE_EN         0u   /*     Include code for OSTaskCreate()                          */
 #define OS_TASK_CREATE_EXT_EN     1u   /*     Include code for OSTaskCreateExt()                       */
-#define OS_TASK_DEL_EN            1u   /*     Include code for OSTaskDel()                             */
-#define OS_TASK_NAME_EN           1u   /*     Enable task names                                        */
+#define OS_TASK_DEL_EN            0u   /*     Include code for OSTaskDel()                             */
+#define OS_TASK_NAME_EN           0u   /*     Enable task names                                        */
 #define OS_TASK_PROFILE_EN        1u   /*     Include variables in OS_TCB for profiling                */
 #define OS_TASK_QUERY_EN          1u   /*     Include code for OSTaskQuery()                           */
 #define OS_TASK_REG_TBL_SIZE      1u   /*     Size of task variables array (#of INT32U entries)        */
@@ -95,7 +95,7 @@
 
 
                                        /* --------------------- MEMORY MANAGEMENT -------------------- */
-#define OS_MEM_EN                 1u   /* Enable (1) or Disable (0) code generation for MEMORY MANAGER */
+#define OS_MEM_EN                 0u   /* Enable (1) or Disable (0) code generation for MEMORY MANAGER */
 #define OS_MEM_NAME_EN            1u   /*     Enable memory partition names                            */
 #define OS_MEM_QUERY_EN           1u   /*     Include code for OSMemQuery()                            */
 

@@ -45,20 +45,61 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
  */
 
 #include <mcc.h>
+#include <ucos_ii.h>
+#include "app_cfg.h"
+#include "debug.h"
+#include <bsp.h>
+
+static OS_STK MainTaskSTK[OS_MAIN_TASK_SIZE];
+
+static void hardware_test(void)
+{
+    IO_ALARM_LED_SetHigh();
+    IO_FAULT_LED_SetHigh();
+    IO_NORMAL_LED_SetHigh();
+    __delay_ms(500);
+    IO_ALARM_LED_SetLow();
+    IO_FAULT_LED_SetLow();
+    IO_NORMAL_LED_SetLow();
+    __delay_ms(500);
+}
+
+void __attribute__((user_init)) system_init(void)
+{
+    SYSTEM_Initialize();
+    debug_init();
+}
+
+
+static void main_task(void *p_arg)
+{
+    BSP_Init();
+    
+    while (1)
+    {
+        hardware_test();
+        debug_print(1, "main task run\r\n");
+        OSTimeDly(100);
+    }
+}
+
 
 /*
                          Main application
  */
 int main(void) {
-    // initialize the device
-    SYSTEM_Initialize();
 
-    while (1) {
-        // Add your application code
-    }
-
+    OSInit();
+    OSTaskCreateExt(main_task, (void *)0, 
+            (OS_STK *)&MainTaskSTK[0],
+            OS_MAIN_TASK_PRIO, OS_MAIN_TASK_PRIO, 
+            (OS_STK *)&MainTaskSTK[OS_MAIN_TASK_SIZE-1], 
+            OS_MAIN_TASK_SIZE, 
+            (void *)0, OS_TASK_OPT_STK_CHK | OS_TASK_OPT_STK_CLR);
+    OSStart();
     return -1;
 }
 /**
  End of File
  */
+

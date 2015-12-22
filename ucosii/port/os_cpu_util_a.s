@@ -63,10 +63,10 @@
     push PSVPAG
 .endif
 .ifdef __PIC24F
-    ;push      PSVPAG
     ;modify for PIC24FJ64GC006
-    push    DSRPAG
-    push    DSWPAG
+    push     DSRPAG
+    push     DSWPAG
+    ;push     PSVPAG
 .endif
     push     RCOUNT                                                     ; Push the Repeat Loop Counter      Register onto the stack
 .ifdef __dsPIC33E
@@ -126,10 +126,10 @@
     pop      PSVPAG
 .endif
 .ifdef __PIC24F
-    ;pop      PSVPAG
     ;modify for PIC24FJ64GC006
     pop     DSWPAG
     pop     DSRPAG
+    ;pop     PSVPAG
 .endif
     pop      TBLPAG                                                     ; Pull the Table Page               Register from the stack
 .ifdef __dsPIC33E

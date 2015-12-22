@@ -1,26 +1,26 @@
 /**
-  @Generated MPLAB� Code Configurator Header File
+  System Interrupts Generated Driver File 
 
   @Company:
     Microchip Technology Inc.
 
   @File Name:
-    mcc.h
+    interrupt_manager.h
 
   @Summary:
-    This is the mcc.h file generated using MPLAB� Code Configurator
+    This is the generated driver implementation file for setting up the
+    interrupts using MPLAB� Code Configurator
 
   @Description:
-    This header file provides implementations for driver APIs for all modules selected in the GUI.
-    Generation Information :
+    This source file provides implementations for MPLAB� Code Configurator interrupts.
+    Generation Information : 
         Product Revision  :  MPLAB� Code Configurator - v2.25.2
         Device            :  PIC24FJ64GC006
-        Version           :  1.02
+        Version           :  1.01
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.24
         MPLAB             :  MPLAB X v2.35 or v3.00
  */
-
 /*
 Copyright (c) 2013 - 2015 released Microchip Technology Inc.  All rights reserved.
 
@@ -44,52 +44,36 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
  */
 
-#ifndef MCC_H
-#define	MCC_H
-#include <xc.h>
-#include "pin_manager.h"
-#include <stdint.h>
-#include <stdbool.h>
-#include "interrupt_manager.h"
-#include "uart2.h"
-#include "dma.h"
-#include "tmr2.h"
-#include "tmr4.h"
-#include "tmr5.h"
-
-#define _XTAL_FREQ  32000000
-#define FCY     (_XTAL_FREQ/2)
-
-#include <libpic30.h>
+#ifndef _INTERRUPT_MANAGER_H
+#define _INTERRUPT_MANAGER_H
 
 /**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the device to the default states configured in the
- *                  MCC GUI
- * @Example
-    SYSTEM_Initialize(void);
- */
-void SYSTEM_Initialize(void);
+  @Summary
+    Initializes the interrupt priorities of the PIC24FJ64GC006
 
-/**
- * @Param
-    none
- * @Returns
-    none
- * @Description
-    Initializes the oscillator to the default states configured in the
- *                  MCC GUI
- * @Example
-    OSCILLATOR_Initialize(void);
- */
-void OSCILLATOR_Initialize(void);
+  @Description
+    This routine sets the interrupt priorities of the modules that have been configured
+    for the PIC24FJ64GC006
 
+  @Preconditions
+    None.
 
-#endif	/* MCC_H */
-/**
- End of File
+  @Returns
+    None.
+
+  @Param
+    None.
+
+  @Example
+    <code>
+    void SYSTEM_Initialize(void)
+    {
+        // Other initializers are called from this function
+        INTERRUPT_Initialize ();
+    }
+    </code>
+
  */
+void INTERRUPT_Initialize(void);
+
+#endif

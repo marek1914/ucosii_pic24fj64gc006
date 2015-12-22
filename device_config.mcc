@@ -4,8 +4,11 @@
         <manager generated="true" name="Pin Manager" reloadPin="manual">
             <setting name="package" option="TQFP64"/>
             <setting name="sorting" option="true"/>
-            <file checksum="1804390403" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
-            <file checksum="1235433197" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
+            <resource customName="IO_ALARM" digital="true" direction="OUTPUT" function="RB1" ioc="0" module="GPIO" name="RB1" start="false" type="pin" wpu="false"/>
+            <resource customName="IO_FAULT" digital="true" direction="OUTPUT" function="RB2" ioc="0" module="GPIO" name="RB2" start="false" type="pin" wpu="false"/>
+            <resource customName="IO_NORMAL" digital="true" direction="OUTPUT" function="RB3" ioc="0" module="GPIO" name="RB3" start="false" type="pin" wpu="false"/>
+            <file checksum="1918293264" modified="false" name="pin_manager.c" path="mcc_generated_files/pin_manager.c"/>
+            <file checksum="1849041506" modified="false" name="pin_manager.h" path="mcc_generated_files/pin_manager.h"/>
         </manager>
         <manager generated="true" name="System" reloadPin="manual">
             <initializer comment="" name="Initialize">
@@ -53,16 +56,23 @@
             <setting name="LPCFG" option="OFF"/>
             <setting name="GCP" option="OFF"/>
             <setting name="FWDTEN" option="WDT_HW"/>
-            <setting name="ICS" option="PGx1"/>
+            <setting name="ICS" option="PGx2"/>
             <setting name="WINDIS" option="OFF"/>
-            <setting name="JTAGEN" option="ON"/>
+            <setting name="JTAGEN" option="OFF"/>
             <setting name="FWPSA" option="PR128"/>
             <setting name="GWRP" option="OFF"/>
             <setting name="Primary Oscillator" option="4000000"/>
             <setting name="Secondary Oscillator" option="31000"/>
             <setting name="generateConfigBits" option="true"/>
-            <file checksum="2731417629" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
+            <file checksum="449126603" modified="false" name="mcc.c" path="mcc_generated_files/mcc.c"/>
             <file checksum="1565132596" modified="false" name="mcc.h" path="mcc_generated_files/mcc.h"/>
         </manager>
     </managers>
+    <modules>
+        <module generated="true" mode="GPIO" name="GPIO" order="0" reloadPin="manual" type="GPIO">
+            <resource customName="IO_NORMAL" digital="true" direction="OUTPUT" function="RB3" ioc="0" module="GPIO" name="RB3" start="false" type="pin" wpu="false"/>
+            <resource customName="IO_FAULT" digital="true" direction="OUTPUT" function="RB2" ioc="0" module="GPIO" name="RB2" start="false" type="pin" wpu="false"/>
+            <resource customName="IO_ALARM" digital="true" direction="OUTPUT" function="RB1" ioc="0" module="GPIO" name="RB1" start="false" type="pin" wpu="false"/>
+        </module>
+    </modules>
 </configuration>

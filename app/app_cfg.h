@@ -38,7 +38,10 @@
 // TODO Insert C++ class definitions if appropriate
 
 // TODO Insert declarations
-#define OS_TASK_TMR_PRIO    (3)
+#define OS_MAIN_TASK_SIZE   (125)
+#define OS_MAIN_TASK_PRIO   (5)
+
+#define OS_TASK_TMR_PRIO    (6)
 
 // Comment a function and leverage automatic documentation with slash star star
 /**

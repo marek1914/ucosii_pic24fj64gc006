@@ -48,7 +48,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 // CONFIG4
 #pragma config I2C2SEL = SEC    // Alternate I2C2 Location Select bit->I2C2 is multiplexed to SDA2/RF4 and SCL2/RF5
-#pragma config DSWDTEN = ON    // Deep Sleep Watchdog Timer Enable->DSWDT Enabled
+#pragma config DSWDTEN = OFF    // Deep Sleep Watchdog Timer Enable->DSWDT Disabled
 #pragma config DSWDTOSC = LPRC    // DSWDT Reference Clock Select->DSWDT uses LPRC as reference clock
 #pragma config PLLDIV = NODIV    // PLL Input Prescaler Select bits->Oscillator used directly (4 MHz input)
 #pragma config RTCBAT = ON    // RTC Battery Operation Enable->RTC operation is continued through VBAT
@@ -62,7 +62,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config BOREN = ON    // Brown-out Reset Enable->Brown-out Reset Enable
 #pragma config WPDIS = WPDIS    // Segment Write Protection Disable->Disabled
 #pragma config WPFP = WPFP127    // Write Protection Flash Page Segment Boundary->Page 127 (0x1FC00)
-#pragma config SOSCSEL = ON    // SOSC Selection bits->SOSC circuit selected
+#pragma config SOSCSEL = OFF    // SOSC Selection bits->Digital (SCLKI) mode
 #pragma config WPEND = WPENDMEM    // Segment Write Protection End Page Select->Write Protect from WPFP to the last page of memory
 #pragma config WDTWIN = PS25_0    // Window Mode Watchdog Timer Window Width Select->Watch Dog Timer Window Width is 25 percent
 
@@ -70,21 +70,23 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #pragma config WDTCLK = LPRC    // WDT Clock Source Select bits->WDT uses LPRC
 #pragma config FCKSM = CSDCMD    // Clock Switching and Fail-Safe Clock Monitor Configuration bits->Clock switching and Fail-Safe Clock Monitor are disabled
 #pragma config ALTCVREF = CVREF_RB    // External Comparator Reference Location Select bit->CVREF+/CVREF- are mapped to RB0/RB1
-#pragma config POSCMD = EC    // Primary Oscillator Select->External-Clock Mode Enabled
+#pragma config POSCMD = XT    // Primary Oscillator Select (XT Oscillator Enabled)
+//#pragma config POSCMD = NONE
 #pragma config ALTADREF = AVREF_RB    // External 12-Bit A/D Reference Location Select bit->AVREF+/AVREF- are mapped to RB0/RB1
 #pragma config FNOSC = PRIPLL    // Initial Oscillator Select->Primary Oscillator with PLL module (XTPLL,HSPLL, ECPLL)
-#pragma config IESO = ON    // Internal External Switchover->Enabled
-#pragma config OSCIOFCN = OFF    // OSCO Pin Configuration->OSCO/CLKO/RC15 functions as CLKO (FOSC/2)
+//#pragma config FNOSC = FRCPLL
+#pragma config IESO = ON    // Internal External Switchover->Disabled
+#pragma config OSCIOFCN = ON    // OSCO Pin Configuration->OSCO/CLKO/RC15 functions as port I/O (RC15)
 #pragma config WDTCMX = WDTCLK    // WDT Clock Source Select bits->WDT clock source is determined by the WDTCLK Configuration bits
 
 // CONFIG1
 #pragma config WDTPS = PS32768    // Watchdog Timer Postscaler Select->1:32,768
 #pragma config LPCFG = OFF    // Low power regulator control->Disabled - regardless of RETEN
 #pragma config GCP = OFF    // General Segment Code Protect->Code protection is disabled
-#pragma config FWDTEN = WDT_HW    // Watchdog Timer Enable->WDT enabled in hardware
-#pragma config ICS = PGx1    // Emulator Pin Placement Select bits->Emulator functions are shared with PGEC1/PGED1
+#pragma config FWDTEN = WDT_DIS    // Watchdog Timer Enable->WDT disabled in hardware; SWDTEN bit disabled
+#pragma config ICS = PGx2    // Emulator Pin Placement Select bits->Emulator functions are shared with PGEC2/PGED2
 #pragma config WINDIS = OFF    // Windowed WDT Disable->Standard Watchdog Timer
-#pragma config JTAGEN = ON    // JTAG Port Enable->Enabled
+#pragma config JTAGEN = OFF    // JTAG Port Enable->Disabled
 #pragma config FWPSA = PR128    // WDT Prescaler Ratio Select->1:128
 #pragma config GWRP = OFF    // General Segment Write Protect->Disabled
 
@@ -93,6 +95,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 void SYSTEM_Initialize(void) {
     OSCILLATOR_Initialize();
     PIN_MANAGER_Initialize();
+    INTERRUPT_Initialize();
 }
 
 void OSCILLATOR_Initialize(void) {
@@ -101,7 +104,15 @@ void OSCILLATOR_Initialize(void) {
     // STOR disabled; STORPOL Interrupt when STOR is 1; STSIDL disabled; STLPOL Interrupt when STLOCK is 1; STLOCK disabled; STSRC SOSC; STEN disabled; TUN Center frequency; 
     OSCTUN = 0x0000;
     // Set the secondary oscillator
+    OSCCONbits.SOSCEN = 0;
 
+    //if (0x03 == OSCCONbits.COSC); XTPLL
+    while (0x03 != OSCCONbits.COSC)
+    {
+}
+    while (0 == OSCCONbits.LOCK)
+    {
+    }
 }
 
 /**
