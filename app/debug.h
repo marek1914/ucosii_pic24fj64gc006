@@ -35,14 +35,17 @@
 // TODO Insert appropriate #include <>
 
 // TODO Insert C++ class definitions if appropriate
-#define MAX_DEBUG_INFO_SIZE         (100)
+#define MAX_DEBUG_INFO_SIZE         (150)
 
 #define debug_print(level, fmt, args...)    \
-            log_print(level, "%s|%d " "%s:"fmt,__FILE__, __LINE__, __func__, ##args)
+            _log_print(level, " %s|%d " "%s:"fmt,__FILE__, __LINE__, __func__, ##args)
+
+#define log_print(level, fmt, args...)  \
+            _log_print(level, " "fmt, ##args)
 
 // TODO Insert declarations
 void debug_init(void);
-void log_print(int level, char *fmt, ...);
+void _log_print(int level, char *fmt, ...);
 
 // Comment a function and leverage automatic documentation with slash star star
 /**

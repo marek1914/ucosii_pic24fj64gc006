@@ -60,6 +60,9 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #define _XTAL_FREQ  32000000
 #define FCY     (_XTAL_FREQ/2)
 
+#define enable_irq()    __builtin_disi(0x0000)
+#define disable_irq()   __builtin_disi(0x3FFF)
+
 #include <libpic30.h>
 
 /**

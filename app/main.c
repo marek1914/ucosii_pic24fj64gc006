@@ -70,10 +70,14 @@ void __attribute__((user_init)) system_init(void)
     debug_init();
 }
 
+static void module_init(void)
+{
+}
 
 static void main_task(void *p_arg)
 {
     BSP_Init();
+    module_init();
     
     while (1)
     {

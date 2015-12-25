@@ -72,8 +72,8 @@ void INTERRUPT_Initialize(void) {
     //    priority: 2
     IPC4bits.CNIP = 2;
     //    DMA: DMA Channel0
-    //    priority: 3
-    IPC1bits.DMA0IP = 3;
+    //    priority: 5
+    IPC1bits.DMA0IP = 5;
     //    TI: T4 - Timer4
     //    Priority: 1
     IPC6bits.T4IP = 1;
